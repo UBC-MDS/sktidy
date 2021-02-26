@@ -1,4 +1,37 @@
-def tidy_lr():
+def tidy_lr(model, df):
+    """
+    Returns a tidy dataframe for sklearn LinearRegression model with feature names, coefficients/intercept and p-values
+
+    Parameters
+    ----------
+    model : sklearn.linear_model.LinearRegression object
+        The fitted sklearn LinearRegression model
+
+    df: pandas dataframe
+        The feature dataframe to which the LinearRegression object was fitted
+
+    Returns
+    -------
+    tidy_dataframe : pandas dataframe
+        A dataframe with n+1 rows, where n is the number of features in the feature dataframe that was 
+        fitted to the model and 3 columns, describing feature names, coefficients/intercept and p-values
+
+    Examples
+    --------
+    from sklearn.linear_model import LinearRegression
+    from sklearn import datasets
+    import pandas as pd
+    import sktidy
+
+    # Load data and traning the linear regression model
+    X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
+    my_lr = LinearRegression()
+    my_lr.fit(X,y)
+
+    # Get tidy output for the trained sklearn LinearRegression model
+    tidy_lr(model = my_lr, df = X)
+    """
     pass
 
 
