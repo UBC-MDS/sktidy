@@ -1,8 +1,8 @@
-#Peter
 def tidy_lr():
     pass
 
-def tidy_kmeans(kmeans):
+
+def tidy_kmeans(model, dataframe):
     """
     Return a tidy df of cluster information for a kmeans clustering algorithm
 
@@ -13,7 +13,7 @@ def tidy_kmeans(kmeans):
     Parameters
     ----------
     model : sklearn.cluster.KMeans
-    The model to extract the cluster specific information from. 
+    The model to extract the cluster specific information from.
 
     dataframe : pandas dataframe
         The data to which the Kmeans object has been fitted
@@ -31,20 +31,20 @@ def tidy_kmeans(kmeans):
     from sklearn.cluster import DBSCAN, KMeans
     from sklearn import datasets
     import pandas as pd
-    import sktidy 
+    import sktidy
 
-    # Extracting Data and Traning the clustering algorithm
+    # Extracting data and traning the clustering algorithm
     df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
-    keans_clusterer = KMeans()
+    kmeans_clusterer = KMeans()
     kmeans_clusterer.fit(df)
 
-    # Getting the tidy df of cluster information 
+    # Getting the tidy df of cluster information
     tidy_kmeans(model = kmeans_clusterer, dataframe = df)
     """
     pass
 
-#Heidi
-def augment_lr(X,y):
+
+def augment_lr(X, y):
     """
     Adds two columns to the original data of the linear regression model. This includes predictions and residuals.
 
@@ -62,7 +62,42 @@ def augment_lr(X,y):
         A dataframe with the original data plus two additional columns for predictions and residuals. Shaped n observations by m features + 2.
 
     """
+    pass
 
-#Asma
-def augment_kmeans():
+
+def augment_kmeans(model, X):
+    """
+    This function returns a dataframe of the original samples with their assigned clusters based
+    on predictions make by an instance of scikit learn's implementation of KMeans clustering.
+
+    Parameters
+    ----------
+    model : sklearn.cluster.KMeans
+        The model to extract the cluster specific information from
+
+    X : pandas dataframe
+        The data to which the Kmeans object has been fitted
+
+    Returns
+    -------
+    augment_dataframe : pandas dataframe
+        A dataframe with k rows, where k is the number of examples in X and 2 columns of the
+        data points in X and their corresponding predicted label
+
+    Examples
+    --------
+    # Importing packages
+    from sklearn.cluster import KMeans
+    from sklearn import datasets
+    import pandas as pd
+    import sktidy
+
+    # Extracting data and traning the clustering algorithm
+    df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    kmeans_clusterer = KMeans()
+    kmeans_clusterer.fit(df)
+
+    # Getting cluster assignment for each data point
+    augment_kmeans(model = kmeans_clusterer, X = df)
+    """
     pass
