@@ -1,14 +1,20 @@
 #Peter
 def tidy_lr():
+    pass
 
-#Jacob
+def tidy_kmeans(kmeans):
     """
     Return a tidy df of cluster information for a kmeans clustering algorithm
+
+    This function delivers diagnostic information about each cluster defined by an instance of
+    scikit learn's implementation of kmeans clustering including total intertia in each cluster,
+    cluster center, and total number of points associated with each cluster.
 
     Parameters
     ----------
     model : sklearn.cluster.KMeans
-        The model to extract the cluster specific information from. 
+    The model to extract the cluster specific information from. 
+
     dataframe : pandas dataframe
         The data to which the Kmeans object has been fitted
 
@@ -21,23 +27,26 @@ def tidy_lr():
 
     Examples
     --------
-    These are written in doctest format, and should illustrate how to
-    use the function.
+    # Importing packages
+    from sklearn.cluster import DBSCAN, KMeans
+    from sklearn import datasets
+    import pandas as pd
+    import sktidy 
 
-    a = [1, 2, 3]
-    print([x + 3 for x in a])
-    [4, 5, 6]
-    print("a\nb")
-    a
-    b
+    # Extracting Data and Traning the clustering algorithm
+    df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    keans_clusterer = KMeans()
+    kmeans_clusterer.fit(df)
+
+    # Getting the tidy df of cluster information 
+    tidy_kmeans(model = kmeans_clusterer, dataframe = df)
     """
-def tidy_kmeans(kmeans):
-
     pass
-
 
 #Heidi
 def augment_lr():
+    pass
 
 #Asma
 def augment_kmeans():
+    pass
