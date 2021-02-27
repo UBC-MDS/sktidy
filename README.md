@@ -6,8 +6,13 @@ Python package that produces tidy output for sklearn model evaluation!
 
 ## Summary
 
-Sktidy implements a `tidy` and `augment` function for Scikit learn linear regression and kmeans clustering to ease model selection and assesment tasks. The `tidy`
-family of functions will provide similar functionality to `tidy` in the pybroom package but for sklearn models, returning a neat pandas dataframe with important model information at the level of features or clusters for linear regression and kmeans clustering respectively. The `augment` function will provide information at the level of the orignal data point on how points were clustered and silhoutte scores for kmeans clustering and predicted values and residuals for linear regression in a neat pandas data frame. 
+Sktidy implements a `tidy` and `augment` function for Scikit learn linear regression and kmeans clustering to ease model selection and assessment tasks. The `tidy` family of functions will provide similar functionality to `tidy` in the [Pybroom](https://pybroom.readthedocs.io/en/dev/) but for sklearn models, returning a tidy pandas dataframe with important model information at the level of features or clusters for linear regression and kmeans clustering respectively. The `augment` function will provide information at the level of the original data point on how points were clustered and silhoutte scores for kmeans clustering and predicted values and residuals for linear regression in a neat pandas data frame. 
+
+
+## How `sktidy` fits into the Python ecosystem
+
+The functions `tidy` and `augment` functions are inspired by the functions `tidy` and `augment` in the [Pybroom](https://pybroom.readthedocs.io/en/dev/) package which is inspired by the R library [broom](https://github.com/dgrtwo/broom). The current implementation of Pybroom support scipy and lmfit objects. Sklearn lacks a similar functionality that allows users to obtain model fitting results in a tidy dataframe that makes it easy to process and plot the data. Tidy dataframes allows plotting libraries to automatically generate plots to compare many variables without the need for lengthy data cleaning and wrangling. Plotting libraries supporting tidy DataFrames include seaborn, recent versions of matplotlib, bokeh and altair.
+
 
 ## Installation
 
