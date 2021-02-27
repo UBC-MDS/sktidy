@@ -77,12 +77,15 @@ def tidy_kmeans(model, dataframe):
     pass
 
 
-def augment_lr(X, y):
+def augment_lr(model,X, y):
     """
-    Adds two columns to the original data of the linear regression model. This includes predictions and residuals.
+    Adds two columns to the original data of the scikit learn's linear regression model. This includes predictions and residuals.
 
     Parameters
     ----------
+    model : sklearn.linear_model.LinearRegression object
+        The fitted sklearn LinearRegression model
+
     X : pandas.core.frame.DataFrame
         A dataframe of explanatory variables to predict on. Shaped n observations by m features.
 
@@ -94,6 +97,23 @@ def augment_lr(X, y):
     df : pandas.core.frame.DataFrame
         A dataframe with the original data plus two additional columns for predictions and residuals. Shaped n observations by m features + 2.
 
+    Examples
+    --------
+    # Importing packages
+    from sklearn.linear_model import LinearRegression
+    from sklearn import datasets
+    import pandas as pd
+    import sktidy
+
+    # Extracting data and traning the clustering algorithm
+    X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
+    lr_model = LinearRegression()
+    lr_model.fit(X,y)
+
+    # Getting the tidy df of linear regression model output
+    augment_lr(model = lr_model,X = X,y = y)
+    
     """
     pass
 
