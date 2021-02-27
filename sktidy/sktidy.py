@@ -66,7 +66,7 @@ def tidy_kmeans(model, dataframe):
     import pandas as pd
     import sktidy
 
-    # Extracting data and traning the clustering algorithm
+    # Extracting data and training the clustering algorithm
     df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     kmeans_clusterer = KMeans()
     kmeans_clusterer.fit(df)
@@ -105,7 +105,7 @@ def augment_lr(model,X, y):
     import pandas as pd
     import sktidy
 
-    # Extracting data and traning the clustering algorithm
+    # Extracting data and traning the linear regression model
     X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
     lr_model = LinearRegression()
