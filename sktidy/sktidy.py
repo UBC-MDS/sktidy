@@ -115,7 +115,38 @@ def augment_lr(model,X, y):
     augment_lr(model = lr_model,X = X,y = y)
     
     """
-    pass
+    #raise error when model is not a sklearn LinearRegression object
+    if not isinstance(model,LinearRegression):
+        raise TypeError("Input model should be of type 'sklearn.linear_model.LinearRegression'.")
+    
+    #raise error when X is not a pandas dataframe object
+    if not isinstance(X,pd.core.frame.DataFrame):
+        raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
+        
+    #raise error when y is not a pandas Series object
+    if not isinstance(y,pd.core.series.Series):
+        raise TypeError("Input y should be of type 'pandas.core.series.Series'.")
+        
+    #raise error when X is empty
+    if len(X) == 0:
+        raise ValueError("Input X should not be empty")
+        
+    #raise error when Y is empty
+    if len(y) == 0:
+        raise ValueError("Input Y should not be empty")
+        
+    #raise error when model is not fitted yet
+    check_is_fitted(model)
+
+    # calculate predictions and residuals
+    pred = model.predict(X)
+    res = y - pred
+    
+    # create dataframe to return
+    df = X.join(y)
+    df['predictions'] = pred
+    df['residuals'] = res
+    return df
 
 
 def augment_kmeans(model, X):
