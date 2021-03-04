@@ -1,38 +1,79 @@
-def tidy_lr(model, df):
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import statsmodels.api as sm
+from sklearn.utils.validation import check_is_fitted
+
+def tidy_lr(model, X, y):
     """
     Returns a tidy dataframe for sklearn LinearRegression model with feature names, coefficients/intercept and p-values
 
     Parameters
     ----------
-    model : sklearn.linear_model.LinearRegression object
+    model : sklearn.linear_model.LinearRegression
         The fitted sklearn LinearRegression model
 
-    df: pandas dataframe
-        The feature dataframe to which the LinearRegression object was fitted
+    X: pandas.core.frame.DataFrame
+        The feature pandas dataframe to which the LinearRegression object was fitted with m rows and n columns
+
+    y: pandas.core.series.Series
+        The target pandas Series to which the LinearRegression object was fitted with m rows
 
     Returns
     -------
-    tidy_dataframe : pandas dataframe
-        A dataframe with n+1 rows, where n is the number of features in the feature dataframe that was 
+    tidy_dataframe : pandas.core.frame.DataFrame
+        A pandas dataframe with n+1 rows, where n is the number of columns(features) in the input dataframe `X` that was 
         fitted to the model and 3 columns, describing feature names, coefficients/intercept and p-values
 
     Examples
     --------
-    from sklearn.linear_model import LinearRegression
-    from sklearn import datasets
-    import pandas as pd
-    import sktidy
+    >>> from sklearn.linear_model import LinearRegression
+    >>> from sklearn import datasets
+    >>> import pandas as pd
+    >>>import sktidy
 
     # Load data and traning the linear regression model
-    X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
-    y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
-    my_lr = LinearRegression()
-    my_lr.fit(X,y)
+    >>> X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    >>> y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
+    >>> my_lr = LinearRegression()
+    >>> my_lr.fit(X,y)
 
     # Get tidy output for the trained sklearn LinearRegression model
-    tidy_lr(model = my_lr, df = X)
+    >>> tidy_lr(model = my_lr, X = X, y = y)
     """
-    pass
+    #raise error when model is not a sklearn LinearRegression object
+    if not isinstance(model,LinearRegression):
+        raise TypeError("Input model should be of type 'sklearn.linear_model.LinearRegression'.")
+
+    #raise error when X is not a pandas dataframe object
+    if not isinstance(X,pd.core.frame.DataFrame):
+        raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
+
+    #raise error when y is not a pandas Series object
+    if not isinstance(y,pd.core.series.Series):
+        raise TypeError("Input y should be of type 'pandas.core.series.Series'.")
+
+    #raise error when model is not fitted yet
+    check_is_fitted(model)
+
+    #obtain coefficients and intercept
+    est = np.append(model.intercept_,model.coef_)
+
+    #obtain feature names
+    fea = np.append(np.array(['intercept']), X.columns.values)
+
+    #obtain p-values
+    exog = sm.add_constant(X)
+    mod = sm.OLS(y, exog)
+    results = mod.fit()
+    p_val = np.round(results.pvalues.reset_index(drop = True),4)
+
+    #assemble output dataframe
+    output = pd.DataFrame(zip(fea,est,p_val))
+    output.columns = ['feature','coefficient','p-value']
+    
+    return output
+
 
 
 def tidy_kmeans(model, dataframe):
