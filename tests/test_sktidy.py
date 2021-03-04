@@ -41,7 +41,30 @@ def test_tidy_kmeans():
 
 
 def test_augment_lr():
-    pass
+    X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
+    z = np.random.rand(X.shape[1])
+
+    my_lr = LinearRegression()
+    my_lr.fit(X,y)
+
+    my_lr_2 = LinearRegression()
+
+    clf = DecisionTreeClassifier()
+    clf.fit(X,y)
+
+    assert sktidy.augment_lr(model = my_lr, X = X, y = y).shape[0] == X.shape[0], "Output dataframe has the same number of rows as the input dataframe."
+    assert sktidy.augment_lr(model = my_lr, X = X, y = y).shape[1] == X.shape[1] + 3, "Output dataframe the same number of columns as X + y + 2"
+    assert (sktidy.augment_lr(model = my_lr, X = X, y = y)['residuals'] + sktidy.augment_lr(model = my_lr, X = X, y = y)['predictions'] == sktidy.augment_lr(model = my_lr, X = X, y = y)['target']).eq(True).all(), "Predictions and residuals should sum to target"
+
+    with raises(TypeError):
+        sktidy.augment_lr(model = clf, X = X, y = y)
+
+    with raises(TypeError):
+        sktidy.augment_lr(model = my_lr, X = z, y = y)
+    
+    with raises(NotFittedError):
+        sktidy.augment_lr(model = my_lr_2, X = X, y = y)
 
 
 def test_augment_kmeans():
