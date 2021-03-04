@@ -105,8 +105,13 @@ def test_augment_kmeans():
         sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[0] == X.shape[0]
     ), "Output dataframe has the same number of rows as the input dataframe."
     assert (
-        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[1] == X.shape[1] + 2
-    ), "Output dataframe the same number of columns as X + 2"
+        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[1] == X.shape[1] + 1
+    ), "Output dataframe the same number of columns as X + 1"
+
+    assert np.all(
+        (sktidy.augment_kmeans(model=kmeans_clusterer, X=X)["cluster"]).values
+        == kmeans_clusterer.labels_,
+    ), "Cluster assignments are the same as labels"
 
     with raises(TypeError):
         sktidy.augment_kmeans(model=clf, X=X)

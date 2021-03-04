@@ -251,5 +251,5 @@ def augment_kmeans(model, X):
     # create dataframe to return
     df = X.copy()
     df["cluster"] = model.predict(X)
-    df["silhouette_score"] = silhouette_samples(X, df["cluster"])
+
     return df
