@@ -89,8 +89,8 @@ def augment_lr(model,X, y):
     X : pandas.core.frame.DataFrame
         A dataframe of explanatory variables to predict on. Shaped n observations by m features.
 
-    y : pandas.core.frame.DataFrame
-        A dataframe of response variables to predict on. Shaped n observations by 1.
+    y : pandas.core.series.Series
+        A pandas series of response variables to predict on. Shaped n observations by 1.
 
     Returns
     -------
