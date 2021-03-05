@@ -2,11 +2,22 @@ from sktidy import __version__
 from sktidy import sktidy
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.cluster import KMeans
 from sklearn import datasets
 from pytest import raises
+import pytest
 import pandas as pd
 import numpy as np
 from sklearn.exceptions import NotFittedError
+
+@pytest.fixture
+def KMeans_test_data():
+    kmeans_input = pd.DataFrame({'x' : np.array([1,1,1,1,3,3,3,3]),
+                                 'y' : np.array([1,3,7,9,1,3,7,9])})
+    kmeans_tidy_output = pd.DataFrame({"cluster_number" : np.array([0,1]),
+                                       "cluster_inertia" : np.array([8,8]),
+                                       "n_points" : np.array([4,4])})
+
 
 def test_version():
     assert __version__ == '0.1.0'
@@ -37,6 +48,7 @@ def test_tidy_lr():
         sktidy.tidy_lr(model = my_lr_2, X = X, y = y)
 
 def test_tidy_kmeans():
+
     pass
 
 
