@@ -11,12 +11,19 @@ import numpy as np
 from sklearn.exceptions import NotFittedError
 
 @pytest.fixture
-def KMeans_test_data():
+def KMeans_in_data():
     kmeans_input = pd.DataFrame({'x' : np.array([1,1,1,1,3,3,3,3]),
                                  'y' : np.array([1,3,7,9,1,3,7,9])})
+    return kmeans_input
+
+@pytest.fixture
+def KMeans_out_data():
     kmeans_tidy_output = pd.DataFrame({"cluster_number" : np.array([0,1]),
                                        "cluster_inertia" : np.array([8,8]),
                                        "n_points" : np.array([4,4])})
+    return kmeans_tidy_output
+                        
+
 
 
 def test_version():
@@ -47,9 +54,11 @@ def test_tidy_lr():
     with raises(NotFittedError):
         sktidy.tidy_lr(model = my_lr_2, X = X, y = y)
 
-def test_tidy_kmeans():
-
-    pass
+def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
+    kmeans_test = KMeans(n_clusters = 2)
+    kmeans_test.fit(KMeans_in_data)
+    
+    
 
 
 def test_augment_lr():
