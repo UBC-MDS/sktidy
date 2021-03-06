@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
+from sklearn.cluster import KMeans
+
 import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
 
@@ -123,21 +125,28 @@ def tidy_kmeans(model, dataframe):
     if not isinstance(dataframe, pd.core.frame.DataFrame):
         raise TypeError("Input DataFrame should be of type 'pandas.core.frame.DataFrame'.")
 
+    #raise error when model is not fitted yet
+    check_is_fitted(model)
+
     cluster_labels, cluster_counts = np.unique(model.labels_, return_counts=True)
     
-
+    # Creating a list that we'll fill with dfs corresponding to the kmeans centroids with column labels
     centers_list = []
-    
+
     for cluster in cluster_labels:
     # Getting the cluster center for the given each cluster, reshaping it so pandas behaves itself later
         cluster_center = model.cluster_centers_[cluster].reshape(1, cluster_labels.shape[0])
+        # Creating a df, adding labels from origional dataframe
         cluster_center_df = pd.DataFrame(cluster_center, columns = dataframe.columns)
         centers_list.append(cluster_center_df)
 
-    df = {"cluster_number" : cluster_labels,
-          "cluster_inertia" : cluster_labels,
+    
+
+
+    df = pd.DataFrame({"cluster_number" : cluster_labels,
+          #"cluster_inertia" : cluster_labels,
           "center_values" : centers_list,
-          "n_points" : cluster_counts}
+          "n_points" : cluster_counts})
 
     return df
 
