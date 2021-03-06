@@ -18,8 +18,12 @@ def KMeans_in_data():
 
 @pytest.fixture
 def KMeans_out_data():
+    center_0 = pd.DataFrame(np.array([[2.,2.]]), columns = ['x', 'y'])
+    center_1 = pd.DataFrame(np.array([[2.,8.]]), columns = ['x', 'y'])
+
     kmeans_tidy_output = pd.DataFrame({"cluster_number" : np.array([0,1]),
                                        "cluster_inertia" : np.array([8,8]),
+                                       "cluster_center" : [center_0, center_1],
                                        "n_points" : np.array([4,4])})
     return kmeans_tidy_output                      
 
@@ -52,6 +56,7 @@ def test_tidy_lr():
         sktidy.tidy_lr(model = my_lr_2, X = X, y = y)
 
 def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
+
     # Fitting a KMeans model for testing
     kmeans_test = KMeans(n_clusters = 2)
     kmeans_test.fit(KMeans_in_data)
