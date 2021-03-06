@@ -5,6 +5,9 @@ from sklearn.cluster import KMeans
 
 import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_samples
+
 
 def tidy_lr(model, X, y):
     """
@@ -24,7 +27,7 @@ def tidy_lr(model, X, y):
     Returns
     -------
     tidy_dataframe : pandas.core.frame.DataFrame
-        A pandas dataframe with n+1 rows, where n is the number of columns(features) in the input dataframe `X` that was 
+        A pandas dataframe with n+1 rows, where n is the number of columns(features) in the input dataframe `X` that was
         fitted to the model and 3 columns, describing feature names, coefficients/intercept and p-values
 
     Examples
@@ -43,39 +46,40 @@ def tidy_lr(model, X, y):
     # Get tidy output for the trained sklearn LinearRegression model
     >>> tidy_lr(model = my_lr, X = X, y = y)
     """
-    #raise error when model is not a sklearn LinearRegression object
-    if not isinstance(model,LinearRegression):
-        raise TypeError("Input model should be of type 'sklearn.linear_model.LinearRegression'.")
+    # raise error when model is not a sklearn LinearRegression object
+    if not isinstance(model, LinearRegression):
+        raise TypeError(
+            "Input model should be of type 'sklearn.linear_model.LinearRegression'."
+        )
 
-    #raise error when X is not a pandas dataframe object
-    if not isinstance(X,pd.core.frame.DataFrame):
+    # raise error when X is not a pandas dataframe object
+    if not isinstance(X, pd.core.frame.DataFrame):
         raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
 
-    #raise error when y is not a pandas Series object
-    if not isinstance(y,pd.core.series.Series):
+    # raise error when y is not a pandas Series object
+    if not isinstance(y, pd.core.series.Series):
         raise TypeError("Input y should be of type 'pandas.core.series.Series'.")
 
-    #raise error when model is not fitted yet
+    # raise error when model is not fitted yet
     check_is_fitted(model)
 
-    #obtain coefficients and intercept
-    est = np.append(model.intercept_,model.coef_)
+    # obtain coefficients and intercept
+    est = np.append(model.intercept_, model.coef_)
 
-    #obtain feature names
-    fea = np.append(np.array(['intercept']), X.columns.values)
+    # obtain feature names
+    fea = np.append(np.array(["intercept"]), X.columns.values)
 
-    #obtain p-values
+    # obtain p-values
     exog = sm.add_constant(X)
     mod = sm.OLS(y, exog)
     results = mod.fit()
-    p_val = np.round(results.pvalues.reset_index(drop = True),4)
+    p_val = np.round(results.pvalues.reset_index(drop=True), 4)
 
-    #assemble output dataframe
-    output = pd.DataFrame(zip(fea,est,p_val))
-    output.columns = ['feature','coefficient','p-value']
-    
+    # assemble output dataframe
+    output = pd.DataFrame(zip(fea, est, p_val))
+    output.columns = ["feature", "coefficient", "p-value"]
+
     return output
-
 
 
 def tidy_kmeans(model, dataframe):
@@ -151,7 +155,7 @@ def tidy_kmeans(model, dataframe):
     return df
 
 
-def augment_lr(model,X, y):
+def augment_lr(model, X, y):
     """
     Adds two columns to the original data of the scikit learn's linear regression model. This includes predictions and residuals.
 
@@ -187,39 +191,41 @@ def augment_lr(model,X, y):
 
     # Getting the tidy df of linear regression model output
     augment_lr(model = lr_model,X = X,y = y)
-    
+
     """
-    #raise error when model is not a sklearn LinearRegression object
-    if not isinstance(model,LinearRegression):
-        raise TypeError("Input model should be of type 'sklearn.linear_model.LinearRegression'.")
-    
-    #raise error when X is not a pandas dataframe object
-    if not isinstance(X,pd.core.frame.DataFrame):
+    # raise error when model is not a sklearn LinearRegression object
+    if not isinstance(model, LinearRegression):
+        raise TypeError(
+            "Input model should be of type 'sklearn.linear_model.LinearRegression'."
+        )
+
+    # raise error when X is not a pandas dataframe object
+    if not isinstance(X, pd.core.frame.DataFrame):
         raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
-        
-    #raise error when y is not a pandas Series object
-    if not isinstance(y,pd.core.series.Series):
+
+    # raise error when y is not a pandas Series object
+    if not isinstance(y, pd.core.series.Series):
         raise TypeError("Input y should be of type 'pandas.core.series.Series'.")
-        
-    #raise error when X is empty
+
+    # raise error when X is empty
     if len(X) == 0:
         raise ValueError("Input X should not be empty")
-        
-    #raise error when Y is empty
+
+    # raise error when Y is empty
     if len(y) == 0:
         raise ValueError("Input Y should not be empty")
-        
-    #raise error when model is not fitted yet
+
+    # raise error when model is not fitted yet
     check_is_fitted(model)
 
     # calculate predictions and residuals
     pred = model.predict(X)
     res = y - pred
-    
+
     # create dataframe to return
     df = X.join(y)
-    df['predictions'] = pred
-    df['residuals'] = res
+    df["predictions"] = pred
+    df["residuals"] = res
     return df
 
 
@@ -238,7 +244,7 @@ def augment_kmeans(model, X):
 
     Returns
     -------
-    augment_dataframe : pandas dataframe
+    df : pandas dataframe
         A dataframe with k rows, where k is the number of examples in X and 2 columns of the
         data points in X and their corresponding predicted label
 
@@ -258,4 +264,25 @@ def augment_kmeans(model, X):
     # Getting cluster assignment for each data point
     augment_kmeans(model = kmeans_clusterer, X = df)
     """
-    pass
+    # raise error when model is not a sklearn KMeans object
+    if not isinstance(model, KMeans):
+        raise TypeError(
+            "Input model should be of type 'sklearn.cluster._kmeans.KMeans'."
+        )
+
+    # raise error when X is not a pandas dataframe object
+    if not isinstance(X, pd.core.frame.DataFrame):
+        raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
+
+    # raise error when X is empty
+    if len(X) == 0:
+        raise ValueError("Input X should not be empty")
+
+    # raise error when model is not fitted yet
+    check_is_fitted(model)
+
+    # create dataframe to return
+    df = X.copy()
+    df["cluster"] = model.predict(X)
+
+    return df
