@@ -34,30 +34,42 @@ def test_version():
 
 
 def test_tidy_lr():
+
+    # feature and target toy data
     X = datasets.load_iris(return_X_y=True, as_frame=True)[0]
     y = datasets.load_iris(return_X_y=True, as_frame=True)[1]
+
+    # A numpy array to test erroneous input
     z = np.random.rand(X.shape[1])
 
+    # fitted sklearn LinearRegression object
     my_lr = LinearRegression()
     my_lr.fit(X, y)
 
+    # non-fitted sklearn LinearRegression object to test for NotFittedError
     my_lr_2 = LinearRegression()
 
+    #decision tree object to test fot input TypeError
     clf = DecisionTreeClassifier()
     clf.fit(X, y)
 
+    #test output shape
     assert (
         sktidy.tidy_lr(model=my_lr, X=X, y=y).shape[0] == X.shape[1] + 1
-    ), "Output dataframe has number of rows not equal to the number of features in the input dataframe + 1"
+    ), "Output dataframe should have number of rows that equal to the number of features in the input dataframe + 1 (intercept)"
     assert (
         sktidy.tidy_lr(model=my_lr, X=X, y=y).shape[1] == 3
-    ), "Output dataframe does not have 3 columns"
+    ), "Output dataframe should have 3 columns corresponding to feature name, coefficient and p value"
 
+    #test whether erroneous input got catched
     with raises(TypeError):
         sktidy.tidy_lr(model=clf, X=X, y=y)
 
     with raises(TypeError):
         sktidy.tidy_lr(model=my_lr, X=z, y=y)
+
+    with raises(TypeError):
+        sktidy.tidy_lr(model=my_lr, X=X, y=z)
 
     with raises(NotFittedError):
         sktidy.tidy_lr(model=my_lr_2, X=X, y=y)
