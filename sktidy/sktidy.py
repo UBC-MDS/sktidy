@@ -35,15 +35,13 @@ def tidy_lr(model, X, y):
     >>> from sklearn.linear_model import LinearRegression
     >>> from sklearn import datasets
     >>> import pandas as pd
-    >>>import sktidy
-
-    # Load data and traning the linear regression model
+    >>> import sktidy
+    >>> # Load data and traning the linear regression model
     >>> X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     >>> y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
     >>> my_lr = LinearRegression()
     >>> my_lr.fit(X,y)
-
-    # Get tidy output for the trained sklearn LinearRegression model
+    >>> # Get tidy output for the trained sklearn LinearRegression model
     >>> tidy_lr(model = my_lr, X = X, y = y)
     """
     # raise error when model is not a sklearn LinearRegression object
@@ -107,50 +105,53 @@ def tidy_kmeans(model, dataframe):
 
     Examples
     --------
-    # Importing packages
-    from sklearn.cluster import DBSCAN, KMeans
-    from sklearn import datasets
-    import pandas as pd
-    import sktidy
-
-    # Extracting data and training the clustering algorithm
-    df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
-    kmeans_clusterer = KMeans()
-    kmeans_clusterer.fit(df)
-
-    # Getting the tidy df of cluster information
-    tidy_kmeans(model = kmeans_clusterer, dataframe = df)
+    >>> # Importing packages
+    >>> from sklearn.cluster import DBSCAN, KMeans
+    >>> from sklearn import datasets
+    >>> import pandas as pd
+    >>> import sktidy
+    >>> # Extracting data and training the clustering algorithm
+    >>> df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    >>> kmeans_clusterer = KMeans()
+    >>> kmeans_clusterer.fit(df)
+    >>> # Getting the tidy df of cluster information
+    >>> tidy_kmeans(model = kmeans_clusterer, dataframe = df)
     """
     # raise error when model is not a sklearn LinearRegression object
     if not isinstance(model, KMeans):
         raise TypeError("Input model should be of type 'sklearn.cluster.KMeans'")
-    
+
     # raise error when X is not a pandas dataframe object
     if not isinstance(dataframe, pd.core.frame.DataFrame):
-        raise TypeError("Input DataFrame should be of type 'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input DataFrame should be of type 'pandas.core.frame.DataFrame'."
+        )
 
-    #raise error when model is not fitted yet
+    # raise error when model is not fitted yet
     check_is_fitted(model)
 
     cluster_labels, cluster_counts = np.unique(model.labels_, return_counts=True)
-    
+
     # Creating a list that we'll fill with dfs corresponding to the kmeans centroids with column labels
     centers_list = []
 
     for cluster in cluster_labels:
-    # Getting the cluster center for the given each cluster, reshaping it so pandas behaves itself later
-        cluster_center = model.cluster_centers_[cluster].reshape(1, cluster_labels.shape[0])
+        # Getting the cluster center for the given each cluster, reshaping it so pandas behaves itself later
+        cluster_center = model.cluster_centers_[cluster].reshape(
+            1, cluster_labels.shape[0]
+        )
         # Creating a df, adding labels from origional dataframe
-        cluster_center_df = pd.DataFrame(cluster_center, columns = dataframe.columns)
+        cluster_center_df = pd.DataFrame(cluster_center, columns=dataframe.columns)
         centers_list.append(cluster_center_df)
 
-    
-
-
-    df = pd.DataFrame({"cluster_number" : cluster_labels,
-          #"cluster_inertia" : cluster_labels,
-          "center_values" : centers_list,
-          "n_points" : cluster_counts})
+    df = pd.DataFrame(
+        {
+            "cluster_number": cluster_labels,
+            # "cluster_inertia" : cluster_labels,
+            "center_values": centers_list,
+            "n_points": cluster_counts,
+        }
+    )
 
     return df
 
@@ -177,20 +178,18 @@ def augment_lr(model, X, y):
 
     Examples
     --------
-    # Importing packages
-    from sklearn.linear_model import LinearRegression
-    from sklearn import datasets
-    import pandas as pd
-    import sktidy
-
-    # Extracting data and traning the linear regression model
-    X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
-    y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
-    lr_model = LinearRegression()
-    lr_model.fit(X,y)
-
-    # Getting the tidy df of linear regression model output
-    augment_lr(model = lr_model,X = X,y = y)
+    >>> # Importing packages
+    >>> from sklearn.linear_model import LinearRegression
+    >>> from sklearn import datasets
+    >>> import pandas as pd
+    >>> import sktidy
+    >>> # Extracting data and traning the linear regression model
+    >>> X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    >>> y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
+    >>> lr_model = LinearRegression()
+    >>> lr_model.fit(X,y)
+    >>> # Getting the tidy df of linear regression model output
+    >>> augment_lr(model = lr_model,X = X,y = y)
 
     """
     # raise error when model is not a sklearn LinearRegression object
@@ -250,19 +249,17 @@ def augment_kmeans(model, X):
 
     Examples
     --------
-    # Importing packages
-    from sklearn.cluster import KMeans
-    from sklearn import datasets
-    import pandas as pd
-    import sktidy
-
-    # Extracting data and traning the clustering algorithm
-    df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
-    kmeans_clusterer = KMeans()
-    kmeans_clusterer.fit(df)
-
-    # Getting cluster assignment for each data point
-    augment_kmeans(model = kmeans_clusterer, X = df)
+    >>> # Importing packages
+    >>> from sklearn.cluster import KMeans
+    >>> from sklearn import datasets
+    >>> import pandas as pd
+    >>> import sktidy
+    >>> # Extracting data and traning the clustering algorithm
+    >>> df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
+    >>> kmeans_clusterer = KMeans()
+    >>> kmeans_clusterer.fit(df)
+    >>> # Getting cluster assignment for each data point
+    >>> augment_kmeans(model = kmeans_clusterer, X = df)
     """
     # raise error when model is not a sklearn KMeans object
     if not isinstance(model, KMeans):

@@ -2,8 +2,15 @@
 name = "sktidy"
 version = "0.1.0"
 description = "Python package that produces tidy output for sklearn model evaluation!"
-authors = ["Xudong Yang <xd1222@student.ubc.ca>"]
+authors = ["Xudong Yang <xd1222@student.ubc.ca>", 
+"Asma Al-Odaini <asmaalodaini@gmail.com>", 
+"Jacob McFarlane <jacob@jakenow.net>", 
+"Heidi Ye <heidi.ye@icloud.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/UBC-MDS/sktidy"
+repository = "https://github.com/UBC-MDS/sktidy"
+documentation = 'https://sktidy.readthedocs.io'
 
 [tool.poetry.dependencies]
 python = "^3.8"
