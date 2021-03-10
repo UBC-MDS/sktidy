@@ -36,13 +36,11 @@ def tidy_lr(model, X, y):
     >>> from sklearn import datasets
     >>> import pandas as pd
     >>> import sktidy
-
     >>> # Load data and traning the linear regression model
     >>> X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     >>> y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
     >>> my_lr = LinearRegression()
     >>> my_lr.fit(X,y)
-
     >>> # Get tidy output for the trained sklearn LinearRegression model
     >>> tidy_lr(model = my_lr, X = X, y = y)
     """
@@ -112,12 +110,10 @@ def tidy_kmeans(model, dataframe):
     >>> from sklearn import datasets
     >>> import pandas as pd
     >>> import sktidy
-
     >>> # Extracting data and training the clustering algorithm
     >>> df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     >>> kmeans_clusterer = KMeans()
     >>> kmeans_clusterer.fit(df)
-
     >>> # Getting the tidy df of cluster information
     >>> tidy_kmeans(model = kmeans_clusterer, dataframe = df)
     """
@@ -187,13 +183,11 @@ def augment_lr(model, X, y):
     >>> from sklearn import datasets
     >>> import pandas as pd
     >>> import sktidy
-
     >>> # Extracting data and traning the linear regression model
     >>> X = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     >>> y = datasets.load_iris(return_X_y = True, as_frame = True)[1]
     >>> lr_model = LinearRegression()
     >>> lr_model.fit(X,y)
-
     >>> # Getting the tidy df of linear regression model output
     >>> augment_lr(model = lr_model,X = X,y = y)
 
@@ -260,12 +254,10 @@ def augment_kmeans(model, X):
     >>> from sklearn import datasets
     >>> import pandas as pd
     >>> import sktidy
-
     >>> # Extracting data and traning the clustering algorithm
     >>> df = datasets.load_iris(return_X_y = True, as_frame = True)[0]
     >>> kmeans_clusterer = KMeans()
     >>> kmeans_clusterer.fit(df)
-
     >>> # Getting cluster assignment for each data point
     >>> augment_kmeans(model = kmeans_clusterer, X = df)
     """
