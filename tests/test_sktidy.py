@@ -9,7 +9,6 @@ import pytest
 import pandas as pd
 import numpy as np
 from sklearn.exceptions import NotFittedError
-from sklearn.cluster import KMeans
 
 
 @pytest.fixture
@@ -94,8 +93,8 @@ def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
     kmeans_test.fit(KMeans_in_data)
 
     # Getting our sktidy output
-    tidy_output = sktidy.tidy_kmeans(model=kmeans_test, \
-    dataframe=KMeans_in_data)
+    tidy_output = sktidy.tidy_kmeans(model=kmeans_test,
+                                     dataframe=KMeans_in_data)
 
     # Comparing it with our expected outputs
     tidy_output.equals(KMeans_out_data)
@@ -103,7 +102,7 @@ def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
     # Checking that we raise a type error when the wrong model is input
     X = datasets.load_iris(return_X_y=True, as_frame=True)[0]
     y = datasets.load_iris(return_X_y=True, as_frame=True)[1]
-    z = np.random.rand(X.shape[1])
+    # z = np.random.rand(X.shape[1]) z is never used according to flake8
 
     my_lr = LinearRegression()
     my_lr.fit(X, y)
@@ -170,12 +169,12 @@ def test_augment_kmeans():
     clf.fit(X, y)
 
     assert (
-        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[0] == \
-            X.shape[0]
+        sktidy.augment_kmeans(model=kmeans_clusterer, X=X)
+              .shape[0] == X.shape[0]
     ), "Output dataframe has the same number of rows as the input dataframe."
     assert (
-        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[1] == \
-            X.shape[1] + 1
+        sktidy.augment_kmeans(model=kmeans_clusterer, X=X)
+              .shape[1] == X.shape[1] + 1
     ), "Output dataframe the same number of columns as X + 1"
 
     assert np.all(

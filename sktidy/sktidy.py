@@ -5,8 +5,7 @@ from sklearn.cluster import KMeans
 
 import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
-from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_samples
+# from sklearn.metrics import silhouette_samples
 
 
 def tidy_lr(model, X, y):
@@ -58,13 +57,17 @@ def tidy_lr(model, X, y):
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(X, pd.core.frame.DataFrame):
-        raise TypeError("Input X should be of type \
-            'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input X should be of type \
+            'pandas.core.frame.DataFrame'."
+        )
 
     # raise error when y is not a pandas Series object
     if not isinstance(y, pd.core.series.Series):
-        raise TypeError("Input y should be of type \
-            'pandas.core.series.Series'.")
+        raise TypeError(
+            "Input y should be of type \
+            'pandas.core.series.Series'."
+        )
 
     # raise error when model is not fitted yet
     check_is_fitted(model)
@@ -129,8 +132,10 @@ def tidy_kmeans(model, dataframe):
     """
     # raise error when model is not a sklearn LinearRegression object
     if not isinstance(model, KMeans):
-        raise TypeError("Input model should be of type \
-            'sklearn.cluster.KMeans'")
+        raise TypeError(
+            "Input model should be of type \
+            'sklearn.cluster.KMeans'"
+        )
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(dataframe, pd.core.frame.DataFrame):
@@ -141,8 +146,8 @@ def tidy_kmeans(model, dataframe):
     # raise error when model is not fitted yet
     check_is_fitted(model)
 
-    cluster_labels, cluster_counts = np.unique(model.labels_, \
-        return_counts=True)
+    cluster_labels, cluster_counts = np.unique(model.labels_,
+                                               return_counts=True)
 
     # Creating a list that we'll fill with dfs corresponding to the kmeans \
     # centroids with column labels
@@ -155,8 +160,8 @@ def tidy_kmeans(model, dataframe):
             1, cluster_labels.shape[0]
         )
         # Creating a df, adding labels from origional dataframe
-        cluster_center_df = pd.DataFrame(cluster_center, \
-            columns=dataframe.columns)
+        cluster_center_df = pd.DataFrame(cluster_center,
+                                         columns=dataframe.columns)
         centers_list.append(cluster_center_df)
 
     df = pd.DataFrame(
@@ -220,13 +225,17 @@ def augment_lr(model, X, y):
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(X, pd.core.frame.DataFrame):
-        raise TypeError("Input X should be of type \
-            'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input X should be of type \
+            'pandas.core.frame.DataFrame'."
+        )
 
     # raise error when y is not a pandas Series object
     if not isinstance(y, pd.core.series.Series):
-        raise TypeError("Input y should be of type \
-            'pandas.core.series.Series'.")
+        raise TypeError(
+            "Input y should be of type \
+            'pandas.core.series.Series'."
+        )
 
     # raise error when X is empty
     if len(X) == 0:
@@ -293,8 +302,10 @@ def augment_kmeans(model, X):
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(X, pd.core.frame.DataFrame):
-        raise TypeError("Input X should be of type \
-            'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input X should be of type \
+            'pandas.core.frame.DataFrame'."
+        )
 
     # raise error when X is empty
     if len(X) == 0:
