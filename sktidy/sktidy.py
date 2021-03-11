@@ -5,13 +5,13 @@ from sklearn.cluster import KMeans
 
 import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
-from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_samples
+# from sklearn.metrics import silhouette_samples
 
 
 def tidy_lr(model, X, y):
     """
-    Returns a tidy dataframe for sklearn LinearRegression model with feature names, coefficients/intercept and p-values
+    Returns a tidy dataframe for sklearn LinearRegression model with feature \
+        names, coefficients/intercept and p-values
 
     Parameters
     ----------
@@ -19,16 +19,20 @@ def tidy_lr(model, X, y):
         The fitted sklearn LinearRegression model
 
     X: pandas.core.frame.DataFrame
-        The feature pandas dataframe to which the LinearRegression object was fitted with m rows and n columns
+        The feature pandas dataframe to which the LinearRegression object was \
+             fitted with m rows and n columns
 
     y: pandas.core.series.Series
-        The target pandas Series to which the LinearRegression object was fitted with m rows
+        The target pandas Series to which the LinearRegression object was \
+             fitted with m rows
 
     Returns
     -------
     tidy_dataframe : pandas.core.frame.DataFrame
-        A pandas dataframe with n+1 rows, where n is the number of columns(features) in the input dataframe `X` that was
-        fitted to the model and 3 columns, describing feature names, coefficients/intercept and p-values
+        A pandas dataframe with n+1 rows, where n is the number of \
+            columns(features) in the input dataframe `X` that was
+        fitted to the model and 3 columns, describing feature names, \
+            coefficients/intercept and p-values
 
     Examples
     --------
@@ -47,16 +51,23 @@ def tidy_lr(model, X, y):
     # raise error when model is not a sklearn LinearRegression object
     if not isinstance(model, LinearRegression):
         raise TypeError(
-            "Input model should be of type 'sklearn.linear_model.LinearRegression'."
+            "Input model should be of type \
+                'sklearn.linear_model.LinearRegression'."
         )
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(X, pd.core.frame.DataFrame):
-        raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input X should be of type \
+            'pandas.core.frame.DataFrame'."
+        )
 
     # raise error when y is not a pandas Series object
     if not isinstance(y, pd.core.series.Series):
-        raise TypeError("Input y should be of type 'pandas.core.series.Series'.")
+        raise TypeError(
+            "Input y should be of type \
+            'pandas.core.series.Series'."
+        )
 
     # raise error when model is not fitted yet
     check_is_fitted(model)
@@ -84,9 +95,10 @@ def tidy_kmeans(model, dataframe):
     """
     Return a tidy df of cluster information for a kmeans clustering algorithm
 
-    This function delivers diagnostic information about each cluster defined by an instance of
-    scikit learn's implementation of kmeans clustering including total intertia in each cluster,
-    cluster center, and total number of points associated with each cluster.
+    This function delivers diagnostic information about each cluster defined \
+    by an instance of scikit learn's implementation of kmeans clustering \
+    including total intertia in each cluster, cluster center, and \
+    total number of points associated with each cluster.
 
     Parameters
     ----------
@@ -99,9 +111,10 @@ def tidy_kmeans(model, dataframe):
     Returns
     -------
     df : pandas dataframe
-        A dataframe with k rows, where k is the number of clusters and 3 columns,
-        describing respectively the center of the cluster, the sum of inertia of the
-        cluster, and the number of associated data points in a cluster.
+        A dataframe with k rows, where k is the number of clusters and 3 \
+        columns,describing respectively the center of the cluster, the sum of \
+        inertia of the cluster, and the number of associated data points in a \
+        cluster.
 
     Examples
     --------
@@ -119,7 +132,10 @@ def tidy_kmeans(model, dataframe):
     """
     # raise error when model is not a sklearn LinearRegression object
     if not isinstance(model, KMeans):
-        raise TypeError("Input model should be of type 'sklearn.cluster.KMeans'")
+        raise TypeError(
+            "Input model should be of type \
+            'sklearn.cluster.KMeans'"
+        )
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(dataframe, pd.core.frame.DataFrame):
@@ -130,18 +146,22 @@ def tidy_kmeans(model, dataframe):
     # raise error when model is not fitted yet
     check_is_fitted(model)
 
-    cluster_labels, cluster_counts = np.unique(model.labels_, return_counts=True)
+    cluster_labels, cluster_counts = np.unique(model.labels_,
+                                               return_counts=True)
 
-    # Creating a list that we'll fill with dfs corresponding to the kmeans centroids with column labels
+    # Creating a list that we'll fill with dfs corresponding to the kmeans \
+    # centroids with column labels
     centers_list = []
 
     for cluster in cluster_labels:
-        # Getting the cluster center for the given each cluster, reshaping it so pandas behaves itself later
+        # Getting the cluster center for the given each cluster, reshaping it \
+        # so pandas behaves itself later
         cluster_center = model.cluster_centers_[cluster].reshape(
             1, cluster_labels.shape[0]
         )
         # Creating a df, adding labels from origional dataframe
-        cluster_center_df = pd.DataFrame(cluster_center, columns=dataframe.columns)
+        cluster_center_df = pd.DataFrame(cluster_center,
+                                         columns=dataframe.columns)
         centers_list.append(cluster_center_df)
 
     df = pd.DataFrame(
@@ -158,7 +178,8 @@ def tidy_kmeans(model, dataframe):
 
 def augment_lr(model, X, y):
     """
-    Adds two columns to the original data of the scikit learn's linear regression model. This includes predictions and residuals.
+    Adds two columns to the original data of the scikit learn's linear \
+    regression model. This includes predictions and residuals.
 
     Parameters
     ----------
@@ -166,15 +187,18 @@ def augment_lr(model, X, y):
         The fitted sklearn LinearRegression model
 
     X : pandas.core.frame.DataFrame
-        A dataframe of explanatory variables to predict on. Shaped n observations by m features.
+        A dataframe of explanatory variables to predict on. Shaped n \
+        observations by m features.
 
     y : pandas.core.series.Series
-        A pandas series of response variables to predict on. Shaped n observations by 1.
+        A pandas series of response variables to predict on. Shaped n \
+        observations by 1.
 
     Returns
     -------
     df : pandas.core.frame.DataFrame
-        A dataframe with the original data plus two additional columns for predictions and residuals. Shaped n observations by m features + 2.
+        A dataframe with the original data plus two additional columns for \
+        predictions and residuals. Shaped n observations by m features + 2.
 
     Examples
     --------
@@ -195,16 +219,23 @@ def augment_lr(model, X, y):
     # raise error when model is not a sklearn LinearRegression object
     if not isinstance(model, LinearRegression):
         raise TypeError(
-            "Input model should be of type 'sklearn.linear_model.LinearRegression'."
+            "Input model should be of type \
+                'sklearn.linear_model.LinearRegression'."
         )
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(X, pd.core.frame.DataFrame):
-        raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input X should be of type \
+            'pandas.core.frame.DataFrame'."
+        )
 
     # raise error when y is not a pandas Series object
     if not isinstance(y, pd.core.series.Series):
-        raise TypeError("Input y should be of type 'pandas.core.series.Series'.")
+        raise TypeError(
+            "Input y should be of type \
+            'pandas.core.series.Series'."
+        )
 
     # raise error when X is empty
     if len(X) == 0:
@@ -230,8 +261,9 @@ def augment_lr(model, X, y):
 
 def augment_kmeans(model, X):
     """
-    This function returns a dataframe of the original samples with their assigned clusters based
-    on predictions make by an instance of scikit learn's implementation of KMeans clustering.
+    This function returns a dataframe of the original samples with their \
+    assigned clusters based on predictions make by an instance of scikit \
+    learn's implementation of KMeans clustering.
 
     Parameters
     ----------
@@ -244,8 +276,9 @@ def augment_kmeans(model, X):
     Returns
     -------
     df : pandas dataframe
-        A dataframe with k rows, where k is the number of examples in X and 2 columns of the
-        data points in X and their corresponding predicted label
+        A dataframe with k rows, where k is the number of examples in X and \
+        2 columns of the data points in X and their corresponding predicted \
+        label
 
     Examples
     --------
@@ -269,7 +302,10 @@ def augment_kmeans(model, X):
 
     # raise error when X is not a pandas dataframe object
     if not isinstance(X, pd.core.frame.DataFrame):
-        raise TypeError("Input X should be of type 'pandas.core.frame.DataFrame'.")
+        raise TypeError(
+            "Input X should be of type \
+            'pandas.core.frame.DataFrame'."
+        )
 
     # raise error when X is empty
     if len(X) == 0:
