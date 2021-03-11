@@ -4,10 +4,10 @@ on:
   # Trigger the workflow on push or pull request to master
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
