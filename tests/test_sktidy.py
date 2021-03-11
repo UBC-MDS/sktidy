@@ -31,7 +31,7 @@ def KMeans_out_data():
     kmeans_tidy_output = pd.DataFrame(
         {
             "cluster_number": np.array([0, 1]),
-            #                                   "cluster_inertia" : np.array([8,8]),
+            # "cluster_inertia" : np.array([8,8]),
             "cluster_center": [center_0, center_1],
             "n_points": np.array([4, 4]),
         }
@@ -66,10 +66,12 @@ def test_tidy_lr():
     # test output shape
     assert (
         sktidy.tidy_lr(model=my_lr, X=X, y=y).shape[0] == X.shape[1] + 1
-    ), "Output dataframe should have number of rows that equal to the number of features in the input dataframe + 1 (intercept)"
+    ), "Output dataframe should have number of rows that equal to the number \
+        of features in the input dataframe + 1 (intercept)"
     assert (
         sktidy.tidy_lr(model=my_lr, X=X, y=y).shape[1] == 3
-    ), "Output dataframe should have 3 columns corresponding to feature name, coefficient and p value"
+    ), "Output dataframe should have 3 columns corresponding to feature name, \
+        coefficient and p value"
 
     # test whether erroneous input got catched
     with raises(TypeError):
@@ -92,7 +94,8 @@ def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
     kmeans_test.fit(KMeans_in_data)
 
     # Getting our sktidy output
-    tidy_output = sktidy.tidy_kmeans(model=kmeans_test, dataframe=KMeans_in_data)
+    tidy_output = sktidy.tidy_kmeans(model=kmeans_test, \
+    dataframe=KMeans_in_data)
 
     # Comparing it with our expected outputs
     tidy_output.equals(KMeans_out_data)
@@ -107,7 +110,8 @@ def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
     with raises(TypeError):
         sktidy.tidy_kmeans(model=my_lr, dataframe=KMeans_in_data)
 
-    # Creating an untrained model and checking that we raise a NotFittedError when we try to use tidy on it
+    # Creating an untrained model and checking that we raise a NotFittedError \
+    # when we try to use tidy on it
     with raises(NotFittedError):
         sktidy.tidy_kmeans(model=KMeans(), dataframe=KMeans_in_data)
 
@@ -166,10 +170,12 @@ def test_augment_kmeans():
     clf.fit(X, y)
 
     assert (
-        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[0] == X.shape[0]
+        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[0] == \
+            X.shape[0]
     ), "Output dataframe has the same number of rows as the input dataframe."
     assert (
-        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[1] == X.shape[1] + 1
+        sktidy.augment_kmeans(model=kmeans_clusterer, X=X).shape[1] == \
+            X.shape[1] + 1
     ), "Output dataframe the same number of columns as X + 1"
 
     assert np.all(
