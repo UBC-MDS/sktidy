@@ -1,4 +1,3 @@
-from sktidy import __version__
 from sktidy import sktidy
 from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier
@@ -36,10 +35,6 @@ def KMeans_out_data():
         }
     )
     return kmeans_tidy_output
-
-
-def test_version():
-    assert __version__ == "0.1.0"
 
 
 def test_tidy_lr():

@@ -43,7 +43,7 @@ pytz = ">=2015.7"
 name = "bleach"
 version = "3.3.0"
 description = "An easy safelist-based HTML-sanitizing tool."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -56,7 +56,7 @@ webencodings = "*"
 name = "certifi"
 version = "2020.12.5"
 description = "Python package for providing Mozilla's CA Bundle."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -64,7 +64,7 @@ python-versions = "*"
 name = "cffi"
 version = "1.14.5"
 description = "Foreign Function Interface for Python calling C code."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -75,7 +75,7 @@ pycparser = "*"
 name = "chardet"
 version = "4.0.0"
 description = "Universal encoding detector for Python 2 and 3"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -83,7 +83,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "click"
 version = "7.1.2"
 description = "Composable command line interface toolkit"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -91,7 +91,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "click-log"
 version = "0.3.2"
 description = "Logging integration for Click"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -114,7 +114,7 @@ requests = ">=2.7.9"
 name = "colorama"
 version = "0.4.4"
 description = "Cross-platform colored terminal text."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -133,7 +133,7 @@ toml = ["toml"]
 name = "cryptography"
 version = "3.4.6"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -152,7 +152,7 @@ test = ["pytest (>=6.0)", "pytest-cov", "pytest-subtests", "pytest-xdist", "pret
 name = "docutils"
 version = "0.16"
 description = "Docutils -- Python Documentation Utilities"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -160,7 +160,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "dotty-dict"
 version = "1.3.0"
 description = "Dictionary wrapper for quick access to deeply nested keys."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -184,7 +184,7 @@ pyflakes = ">=2.2.0,<2.3.0"
 name = "gitdb"
 version = "4.0.5"
 description = "Git Object Database"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.4"
 
@@ -195,7 +195,7 @@ smmap = ">=3.0.1,<4"
 name = "gitpython"
 version = "3.1.14"
 description = "Python Git Library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.4"
 
@@ -206,7 +206,7 @@ gitdb = ">=4.0.1,<5"
 name = "idna"
 version = "2.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -230,7 +230,7 @@ python-versions = "*"
 name = "invoke"
 version = "1.5.0"
 description = "Pythonic task execution"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -238,7 +238,7 @@ python-versions = "*"
 name = "jeepney"
 version = "0.6.0"
 description = "Low-level, pure Python DBus protocol wrapper."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -271,7 +271,7 @@ python-versions = ">=3.6"
 name = "keyring"
 version = "22.3.0"
 description = "Store and access your passwords safely."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -312,7 +312,7 @@ python-versions = ">=3.7"
 name = "packaging"
 version = "20.9"
 description = "Core utilities for Python packages"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -351,7 +351,7 @@ six = "*"
 name = "pkginfo"
 version = "1.7.0"
 description = "Query metadatdata from sdists / bdists / installed packages."
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -400,7 +400,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "pycparser"
 version = "2.20"
 description = "C parser in Python"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -416,7 +416,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "pygments"
 version = "2.8.0"
 description = "Pygments is a syntax highlighting package written in Python."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.5"
 
@@ -424,7 +424,7 @@ python-versions = ">=3.5"
 name = "pyparsing"
 version = "2.4.7"
 description = "Python parsing module"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
@@ -479,7 +479,7 @@ six = ">=1.5"
 name = "python-gitlab"
 version = "1.15.0"
 description = "Interact with GitLab API"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -491,7 +491,7 @@ six = "*"
 name = "python-semantic-release"
 version = "7.15.0"
 description = "Automatic Semantic Versioning for Python projects"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -524,7 +524,7 @@ python-versions = "*"
 name = "pywin32-ctypes"
 version = "0.2.0"
 description = ""
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -532,7 +532,7 @@ python-versions = "*"
 name = "readme-renderer"
 version = "29.0"
 description = "readme_renderer is a library for rendering \"readme\" descriptions for Warehouse"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -549,7 +549,7 @@ md = ["cmarkgfm (>=0.5.0,<0.6.0)"]
 name = "requests"
 version = "2.25.1"
 description = "Python HTTP for Humans."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -567,7 +567,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)", "win-inet-pton"]
 name = "requests-toolbelt"
 version = "0.9.1"
 description = "A utility belt for advanced users of python-requests"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -578,7 +578,7 @@ requests = ">=2.0.1,<3.0.0"
 name = "rfc3986"
 version = "1.4.0"
 description = "Validating URI References per RFC 3986"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -620,7 +620,7 @@ numpy = ">=1.16.5"
 name = "secretstorage"
 version = "3.3.1"
 description = "Python bindings to FreeDesktop.org Secret Service API"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -632,7 +632,7 @@ jeepney = ">=0.6"
 name = "semver"
 version = "2.13.0"
 description = "Python helper for Semantic Versioning (http://semver.org/)"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -640,7 +640,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 name = "setuptools-scm"
 version = "5.0.1"
 description = "the blessed package to manage your versions by scm tags"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
@@ -670,7 +670,7 @@ scikit-learn = "*"
 name = "smmap"
 version = "3.0.5"
 description = "A pure Python implementation of a sliding window memory map manager"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
@@ -835,7 +835,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "tomlkit"
 version = "0.7.0"
 description = "Style preserving TOML library"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
@@ -843,7 +843,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 name = "tqdm"
 version = "4.58.0"
 description = "Fast, Extensible Progress Meter"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,>=2.7"
 
@@ -855,7 +855,7 @@ telegram = ["requests"]
 name = "twine"
 version = "3.3.0"
 description = "Collection of utilities for publishing packages on PyPI"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.6"
 
@@ -873,7 +873,7 @@ tqdm = ">=4.14"
 name = "urllib3"
 version = "1.26.3"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
@@ -886,14 +886,14 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 name = "webencodings"
 version = "0.5.1"
 description = "Character encoding aliases for legacy web content"
-category = "dev"
+category = "main"
 optional = false
 python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "6e9bde6fec8832e376675244ee7b9e7187e2de2d428c39658c92095882fa8951"
+content-hash = "ae7951d226590c63b925adddd7790653029de681fc07dfdcc88a69c05390c365"
 
 [metadata.files]
 alabaster = [

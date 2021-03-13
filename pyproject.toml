@@ -17,6 +17,7 @@ python = "^3.8"
 pandas = "^1.2.3"
 sklearn = "^0.0"
 statsmodels = "^0.12.2"
+python-semantic-release = "^7.15.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
@@ -30,3 +31,9 @@ sphinxcontrib-napoleon = "^0.7"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+version_variable = "sktidy/__init__.py:__version__"
+version_source = "commit"
+upload_to_pypi = "false"
+patch_without_tag = "true"
