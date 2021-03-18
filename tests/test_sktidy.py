@@ -89,7 +89,7 @@ def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
 
     # Getting our sktidy output
     tidy_output = sktidy.tidy_kmeans(model=kmeans_test,
-                                     dataframe=KMeans_in_data)
+                                     X=KMeans_in_data)
 
     # Comparing it with our expected outputs
     tidy_output.equals(KMeans_out_data)
@@ -102,12 +102,12 @@ def test_tidy_kmeans(KMeans_in_data, KMeans_out_data):
     my_lr = LinearRegression()
     my_lr.fit(X, y)
     with raises(TypeError):
-        sktidy.tidy_kmeans(model=my_lr, dataframe=KMeans_in_data)
+        sktidy.tidy_kmeans(model=my_lr, X=KMeans_in_data)
 
     # Creating an untrained model and checking that we raise a NotFittedError \
     # when we try to use tidy on it
     with raises(NotFittedError):
-        sktidy.tidy_kmeans(model=KMeans(), dataframe=KMeans_in_data)
+        sktidy.tidy_kmeans(model=KMeans(), X=KMeans_in_data)
 
 
 def test_augment_lr():
