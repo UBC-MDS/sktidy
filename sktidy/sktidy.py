@@ -5,8 +5,7 @@ from sklearn.cluster import KMeans
 
 import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
-install.packages("tidyverse")
-library(tidyverse)
+
 
 
 
@@ -140,7 +139,7 @@ def tidy_kmeans(model, X):
         )
 
     # raise error when X is not a pandas dataframe object
-    if not isinstance(dataframe, pd.core.frame.DataFrame):
+    if not isinstance(X, pd.core.frame.DataFrame):
         raise TypeError(
             "Input DataFrame should be of type 'pandas.core.frame.DataFrame'."
         )
@@ -163,7 +162,7 @@ def tidy_kmeans(model, X):
         )
         # Creating a df, adding labels from origional dataframe
         cluster_center_df = pd.DataFrame(cluster_center,
-                                         columns=dataframe.columns)
+                                         columns=X.columns)
         centers_list.append(cluster_center_df)
 
     df = pd.DataFrame(
