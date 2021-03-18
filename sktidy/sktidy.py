@@ -7,8 +7,6 @@ import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
 
 
-
-
 def tidy_lr(model, X, y):
     """
     Returns a tidy dataframe for sklearn LinearRegression model with feature \
