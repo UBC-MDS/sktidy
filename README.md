@@ -1,6 +1,6 @@
 # sktidy 
 
-![](https://github.com/UBC-MDS/sktidy/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/UBC-MDS/sktidy/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/sktidy) ![Release](https://github.com/UBC-MDS/sktidy/workflows/Release/badge.svg) [![Documentation Status](https://readthedocs.org/projects/sktidy/badge/?version=latest)](https://sktidy.readthedocs.io/en/latest/?badge=latest)
+![](https://github.com/UBC-MDS/sktidy/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/UBC-MDS/sktidy/branch/main/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/sktidy) [![Deploy](https://github.com/UBC-MDS/sktidy/actions/workflows/deploy.yml/badge.svg)](https://github.com/UBC-MDS/sktidy/actions/workflows/deploy.yml) [![Documentation Status](https://readthedocs.org/projects/sktidy/badge/?version=latest)](https://sktidy.readthedocs.io/en/latest/?badge=latest)
 
 Python package that produces tidy output for sklearn model evaluation!
 
