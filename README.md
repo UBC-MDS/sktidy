@@ -29,7 +29,15 @@ $ pip install -i https://test.pypi.org/simple/ sktidy
 
 ## Dependencies
 
-- TODO
+The dependencies for this package are:
+
+- python = "^3.8"
+- pandas = "^1.2.3"
+- sklearn = "^0.0"
+- statsmodels = "^0.12.2"
+- python-semantic-release = "^7.15.0"
+
+For more details, you can check out [`pyproject.toml`](https://github.com/UBC-MDS/sktidy/blob/main/pyproject.toml)
 
 ## Usage
 
