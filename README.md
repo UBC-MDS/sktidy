@@ -37,7 +37,7 @@ The dependencies for this package are:
 - statsmodels = "^0.12.2"
 - python-semantic-release = "^7.15.0"
 
-For more details, you can check out the [`pyproject.toml` file](https://github.com/UBC-MDS/sktidy/blob/main/pyproject.toml)
+For more details, you can check out [`pyproject.toml`](https://github.com/UBC-MDS/sktidy/blob/main/pyproject.toml)
 
 ## Usage
 
