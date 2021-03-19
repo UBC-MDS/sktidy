@@ -5,7 +5,6 @@ from sklearn.cluster import KMeans
 
 import statsmodels.api as sm
 from sklearn.utils.validation import check_is_fitted
-# from sklearn.metrics import silhouette_samples
 
 
 def tidy_lr(model, X, y):
@@ -28,7 +27,7 @@ def tidy_lr(model, X, y):
 
     Returns
     -------
-    tidy_dataframe : pandas.core.frame.DataFrame
+    df : pandas.core.frame.DataFrame
         A pandas dataframe with n+1 rows, where n is the number of \
             columns(features) in the input dataframe `X` that was
         fitted to the model and 3 columns, describing feature names, \
@@ -85,13 +84,13 @@ def tidy_lr(model, X, y):
     p_val = np.round(results.pvalues.reset_index(drop=True), 4)
 
     # assemble output dataframe
-    output = pd.DataFrame(zip(fea, est, p_val))
-    output.columns = ["feature", "coefficient", "p-value"]
+    df = pd.DataFrame(zip(fea, est, p_val))
+    df.columns = ["feature", "coefficient", "p-value"]
 
-    return output
+    return df
 
 
-def tidy_kmeans(model, dataframe):
+def tidy_kmeans(model, X):
     """
     Return a tidy df of cluster information for a kmeans clustering algorithm
 
@@ -105,7 +104,7 @@ def tidy_kmeans(model, dataframe):
     model : sklearn.cluster.KMeans
     The model to extract the cluster specific information from.
 
-    dataframe : pandas dataframe
+    X : pandas dataframe
         The data to which the Kmeans object has been fitted
 
     Returns
@@ -138,7 +137,7 @@ def tidy_kmeans(model, dataframe):
         )
 
     # raise error when X is not a pandas dataframe object
-    if not isinstance(dataframe, pd.core.frame.DataFrame):
+    if not isinstance(X, pd.core.frame.DataFrame):
         raise TypeError(
             "Input DataFrame should be of type 'pandas.core.frame.DataFrame'."
         )
@@ -161,7 +160,7 @@ def tidy_kmeans(model, dataframe):
         )
         # Creating a df, adding labels from origional dataframe
         cluster_center_df = pd.DataFrame(cluster_center,
-                                         columns=dataframe.columns)
+                                         columns=X.columns)
         centers_list.append(cluster_center_df)
 
     df = pd.DataFrame(
