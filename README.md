@@ -65,7 +65,7 @@ $ pip install -i https://test.pypi.org/simple/ sktidy
     kmeans_clusterer = KMeans()
     kmeans_clusterer.fit(df)
     # Getting the tidy df of cluster information
-    tidy_kmeans(model = kmeans_clusterer, dataframe = df)
+    tidy_kmeans(model = kmeans_clusterer, X = df)
     # Getting cluster assignment for each data point
     augment_kmeans(model = kmeans_clusterer, X = df)
 ```

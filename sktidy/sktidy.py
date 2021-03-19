@@ -127,7 +127,7 @@ def tidy_kmeans(model, X):
     >>> kmeans_clusterer = KMeans()
     >>> kmeans_clusterer.fit(df)
     >>> # Getting the tidy df of cluster information
-    >>> tidy_kmeans(model = kmeans_clusterer, dataframe = df)
+    >>> tidy_kmeans(model = kmeans_clusterer, X = df)
     """
     # raise error when model is not a sklearn LinearRegression object
     if not isinstance(model, KMeans):
@@ -145,8 +145,7 @@ def tidy_kmeans(model, X):
     # raise error when model is not fitted yet
     check_is_fitted(model)
 
-    cluster_labels, cluster_counts = np.unique(model.labels_,
-                                               return_counts=True)
+    cluster_labels, cluster_counts = np.unique(model.labels_, return_counts=True)
 
     # Creating a list that we'll fill with dfs corresponding to the kmeans \
     # centroids with column labels
@@ -159,8 +158,7 @@ def tidy_kmeans(model, X):
             1, cluster_labels.shape[0]
         )
         # Creating a df, adding labels from origional dataframe
-        cluster_center_df = pd.DataFrame(cluster_center,
-                                         columns=X.columns)
+        cluster_center_df = pd.DataFrame(cluster_center, columns=X.columns)
         centers_list.append(cluster_center_df)
 
     df = pd.DataFrame(
