@@ -145,8 +145,8 @@ def tidy_kmeans(model, X):
     # raise error when model is not fitted yet
     check_is_fitted(model)
 
-    cluster_labels, cluster_counts = np.unique(model.labels_, return_counts=True)
-
+    cluster_labels, cluster_counts = np.unique(model.labels_,
+                                               return_counts=True)
     # Creating a list that we'll fill with dfs corresponding to the kmeans \
     # centroids with column labels
     centers_list = []
