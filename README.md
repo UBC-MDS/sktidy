@@ -17,7 +17,7 @@ The functions `tidy` and `augment` functions are inspired by the functions `tidy
 ## Installation
 
 ```bash
-$ pip install -i https://test.pypi.org/simple/ sktidy
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple sktidy
 ```
 
 ## Features
