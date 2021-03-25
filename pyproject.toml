@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sktidy"
-version = "0.1.4"
+version = "0.1.5"
 description = "Python package that produces tidy output for sklearn model evaluation!"
 authors = ["Xudong Yang <xd1222@student.ubc.ca>", 
 "Asma Al-Odaini <asmaalodaini@gmail.com>", 
